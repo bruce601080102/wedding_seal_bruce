@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Theme: French vintage invitation (paper + ink + gilt) */
+  --bg-dark: #0f1012;
+  --paper: #f6f0e6;
+  --paper-2: #fffaf2;
+  --ink: #1c2330;
+  --muted: rgba(28, 35, 48, 0.68);
+  --hairline: rgba(28, 35, 48, 0.14);
+
+  /* warm gold accent (avoid overly yellow / overly orange) */
+  --accent: #b08d57;
+  --accent-2: #8f7347;
+  --accent-3: #6a2040; /* subtle burgundy for contrast */
+
+  --shadow-sm: 0 10px 24px rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 22px 60px rgba(0, 0, 0, 0.38);
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+
+  --max: 1040px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Cormorant Garamond", "Noto Serif TC", ui-serif, "Times New Roman", serif;
+  background:
+    radial-gradient(1200px 620px at 16% -10%, rgba(176, 141, 87, 0.22), transparent 60%),
+    radial-gradient(900px 560px at 88% 10%, rgba(106, 32, 64, 0.22), transparent 58%),
+    radial-gradient(1200px 800px at 50% 110%, rgba(255, 253, 248, 0.12), transparent 60%),
+    var(--bg-dark);
+  color: rgba(255, 255, 255, 0.92);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* After opening: switch to paper world */
+html.entered body {
+  position: relative;
+  background:
+    radial-gradient(900px 560px at 12% 0%, rgba(176, 141, 87, 0.20), transparent 60%),
+    radial-gradient(760px 520px at 92% 12%, rgba(106, 32, 64, 0.10), transparent 62%),
+    linear-gradient(180deg, rgba(255, 250, 242, 0.85), rgba(246, 240, 230, 0.98)),
+    var(--paper);
+  color: var(--ink);
+}
+
+/* subtle paper grain (very light) */
+html.entered body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* Wide-screen richness: faint photo "ghosts" at the sides (desktop only) */
+@media (min-width: 1100px) {
+  html.entered body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.10;
+    background-image:
+      linear-gradient(90deg, rgba(246,240,230,0.0), rgba(246,240,230,0.9) 22%, rgba(246,240,230,0.9) 78%, rgba(246,240,230,0.0)),
+      url("../assets/images/cover-left.jpg"),
+      url("../assets/images/cover-right.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%, 520px auto, 520px auto;
+    background-position: center, left 40px top 120px, right 40px bottom 140px;
+    filter: blur(1px) saturate(0.85);
+    mask-image: radial-gradient(800px 520px at 18% 20%, black 0 50%, transparent 72%),
+      radial-gradient(820px 560px at 82% 70%, black 0 50%, transparent 74%);
+    mix-blend-mode: multiply;
+  }
+}
+
+body.locked {
+  height: 100vh;
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+::selection {
+  background: rgba(176, 141, 87, 0.25);
+}

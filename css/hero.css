@@ -1,0 +1,273 @@
+.hero {
+  height: 100vh;
+  position: relative;
+  color: var(--ink);
+}
+
+/* French vintage: paper + ink + ornament */
+.hero-dual {
+  position: relative;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 250, 242, 0.95), rgba(246, 240, 230, 0.98));
+}
+
+.hero-dual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 520px at 50% 10%, rgba(176, 141, 87, 0.14), transparent 62%),
+    linear-gradient(90deg, rgba(28, 35, 48, 0.06), transparent 28%, transparent 72%, rgba(28, 35, 48, 0.06));
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-dual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(1200px 680px at 50% 50%, transparent 62%, rgba(0,0,0,0.16));
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Side ornaments to reduce empty space */
+.hero-side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(120px, 10vw);
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+}
+
+.hero-side-left { left: 14px; }
+.hero-side-right { right: 14px; }
+
+.hero-side-inner {
+  height: min(640px, 70vh);
+  width: 100%;
+  border-left: 1px solid rgba(28, 35, 48, 0.12);
+  border-right: 1px solid rgba(28, 35, 48, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+}
+
+.hero-side-text {
+  font-family: "Cinzel", "Cormorant Garamond", ui-serif, serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: rgba(28, 35, 48, 0.48);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.hero-flourish {
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  border: 1px solid rgba(176, 141, 87, 0.22);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(176, 141, 87, 0.12), transparent 60%),
+    conic-gradient(from 180deg, rgba(176,141,87,0.0), rgba(176,141,87,0.18), rgba(176,141,87,0.0));
+  mask-image: radial-gradient(circle at 50% 50%, black 52%, transparent 70%);
+}
+
+.hero-photo {
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.82) contrast(1.05) brightness(0.98);
+  transform: scale(1.06);
+  animation: heroKenBurns 16s ease-in-out infinite alternate;
+}
+
+.hero-photo.left {
+  background-image: url("../assets/images/cover-left.jpg");
+}
+
+.hero-photo.right {
+  background-image: url("../assets/images/cover-right.jpg");
+  animation-delay: -6s;
+}
+
+@keyframes heroKenBurns {
+  0% { transform: scale(1.05) translate3d(0px, 0px, 0); }
+  100% { transform: scale(1.12) translate3d(10px, -8px, 0); }
+}
+
+/* Center title */
+.hero-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 3;
+}
+
+/* Entrance wow: assemble card on first load after opening */
+html.entered .hero-card {
+  animation: cardAssemble 900ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+html.entered .title-foil {
+  animation-delay: 250ms;
+}
+
+@keyframes cardAssemble {
+  0% { opacity: 0; transform: translateY(18px) scale(0.985); filter: blur(6px); }
+  60% { opacity: 1; transform: translateY(0) scale(1.0); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1.0); filter: blur(0); }
+}
+
+.hero-card {
+  position: relative;
+  padding: 44px 60px 40px;
+  min-width: min(680px, calc(100vw - 40px));
+  background: rgba(255, 250, 242, 0.86);
+  color: var(--ink);
+  border: 1px solid rgba(28, 35, 48, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 28px 90px rgba(0,0,0,0.18);
+  backdrop-filter: blur(10px);
+}
+
+@media (min-width: 1200px) {
+  .hero-card {
+    min-width: min(820px, calc(100vw - 120px));
+    padding: 54px 74px 48px;
+  }
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(176, 141, 87, 0.40);
+  pointer-events: none;
+}
+
+.hero-ornament {
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  pointer-events: none;
+  mask-image: radial-gradient(circle at 50% 18%, black 30%, transparent 60%);
+  opacity: 0.9;
+  background:
+    conic-gradient(from 200deg at 50% 18%, rgba(176,141,87,0.0), rgba(176,141,87,0.28), rgba(176,141,87,0.0)),
+    radial-gradient(420px 220px at 50% 18%, rgba(176,141,87,0.14), transparent 65%);
+}
+
+.hero-kicker {
+  font-family: "Noto Sans TC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: rgba(28, 35, 48, 0.74);
+  margin-bottom: 14px;
+}
+
+.hero-title {
+  font-family: "Cormorant Garamond", "Cinzel", "Noto Serif TC", ui-serif, serif;
+  font-size: clamp(34px, 4.5vw, 54px);
+  letter-spacing: 6px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.title-foil {
+  display: inline-block;
+  background-image:
+    linear-gradient(90deg,
+      rgba(240, 228, 195, 0.85),
+      rgba(176, 141, 87, 0.95),
+      rgba(255, 244, 217, 0.90),
+      rgba(143, 115, 71, 0.98),
+      rgba(240, 228, 195, 0.85)
+    );
+  background-size: 240% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 1px 0 rgba(0,0,0,0.18),
+    0 10px 26px rgba(176, 141, 87, 0.14);
+  animation: foilSweep 5.4s ease-in-out infinite;
+}
+
+@keyframes foilSweep {
+  0% { background-position: 0% 50%; filter: brightness(1.02); }
+  50% { background-position: 100% 50%; filter: brightness(1.12); }
+  100% { background-position: 0% 50%; filter: brightness(1.02); }
+}
+
+.text-only .dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: rgba(28, 35, 48, 0.46);
+  border-radius: 50%;
+  margin: 14px auto 14px;
+}
+
+.hero-sub {
+  font-family: "Noto Sans TC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: rgba(28, 35, 48, 0.74);
+}
+
+@media (max-width: 768px) {
+  /* Mobile: stack photos vertically to avoid squeezing */
+  .hero-dual {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .hero-photo.left {
+    grid-row: 1;
+  }
+
+  .hero-photo.right {
+    grid-row: 2;
+  }
+
+  .hero-photo {
+    animation: none;
+    transform: none;
+    background-position: center;
+  }
+
+  .hero-card {
+    padding: 34px 26px 30px;
+    border-radius: 16px;
+  }
+
+  .hero-title {
+    letter-spacing: 4px;
+  }
+
+  .hero-side {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo,
+  .title-foil {
+    animation: none;
+  }
+}

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>我們的婚禮</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#17181b" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Cinzel:wght@400..700&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/envelope.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+</head>
+
+<body class="locked">
+
+  <!-- 背景音樂 -->
+  <!-- <audio id="bgm" src="assets/music/bgm.mp3" loop></audio> -->
+
+  <!-- 信封頁 -->
+  <section id="envelope-page">
+    <div class="envelope-stage" aria-hidden="true"></div>
+
+    <div class="envelope-header">
+      <div class="monogram" aria-hidden="true">B &amp; B</div>
+      <p class="hint">
+        點擊蠟封開啟邀請函<br>
+        Click the seal to open
+      </p>
+    </div>
+
+
+    <div class="envelope" id="envelope">
+      <div class="envelope-back"></div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-letter" aria-hidden="true">
+        <div class="envelope-letter-inner">
+          <div class="envelope-letter-line"></div>
+          <div class="envelope-letter-title">Invitation</div>
+          <div class="envelope-letter-line"></div>
+        </div>
+      </div>
+      <div class="seal">
+        <img src="assets/images/seal.jpg" alt="我們">
+      </div>
+      <div class="envelope-front"></div>
+    </div>
+  </section>
+
+
+  <!-- 信件內容：預設完全不可見 -->
+  <main id="content-page" hidden>
+
+    <section class="hero hero-dual">
+
+      <aside class="hero-side hero-side-left" aria-hidden="true">
+        <div class="hero-side-inner">
+          <div class="hero-flourish"></div>
+          <div class="hero-side-text">Invitation</div>
+          <div class="hero-flourish"></div>
+        </div>
+      </aside>
+
+      <div class="hero-photo left"></div>
+      <div class="hero-photo right"></div>
+
+      <aside class="hero-side hero-side-right" aria-hidden="true">
+        <div class="hero-side-inner">
+          <div class="hero-flourish"></div>
+          <div class="hero-side-text">01 NOV 2026</div>
+          <div class="hero-flourish"></div>
+        </div>
+      </aside>
+
+      <!-- <div class="hero-center-text">
+        <h1>我們結婚了</h1>
+        <p>台北萬豪酒店</p>
+      </div> -->
+
+      <!-- <div class="hero-center-text invite-card">
+        <span class="invite-line"></span>
+
+        <h1>我們結婚了</h1>
+        <p>台北萬豪酒店</p>
+
+        <span class="invite-line"></span>
+
+      </div> -->
+      <!-- <div class="hero-center-text soft-card">
+        <h1>我們結婚了</h1>
+        <p>台北萬豪酒店</p>
+      </div> -->
+
+      <div class="hero-center-text text-only reveal">
+        <div class="hero-card">
+          <div class="hero-ornament" aria-hidden="true"></div>
+          <p class="hero-kicker">Wedding Invitation</p>
+          <h1 class="hero-title">
+            <span class="title-foil">我們 結婚了</span>
+          </h1>
+          <span class="dot" aria-hidden="true"></span>
+          <p class="hero-sub">台北萬豪酒店</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 正文 -->
+    <section class="letter letter-body fold">
+      <p class="opening">
+        親愛的你，
+      </p>
+
+      <p>
+        在無數個平凡的日子裡，我們決定把未來交給彼此，
+        誠摯邀請你，來見證我們人生中最重要的時刻。
+      </p>
+    </section>
+
+    <!-- 倒數 -->
+    <section class="countdown-section fold">
+      <h2>距離我們的婚禮還有</h2>
+      <div class="countdown">
+        <div class="time-box"><span id="days"></span><small>天</small></div>
+        <div class="time-box"><span id="hours"></span><small>時</small></div>
+        <div class="time-box"><span id="minutes"></span><small>分</small></div>
+      </div>
+    </section>
+
+    <!-- 資訊卡（流程/時間/加到行事曆） -->
+    <section class="details fold" id="details">
+      <h2>當日資訊</h2>
+      <div class="details-grid">
+        <div class="details-card">
+          <h3>日期</h3>
+          <p>2026 / 11 / 01（日）</p>
+          <p class="muted">建議提早 20 分鐘抵達</p>
+        </div>
+        <div class="details-card">
+          <h3>流程</h3>
+          <p>16:30 入席</p>
+          <p>17:00 典禮</p>
+          <p>18:00 宴客</p>
+        </div>
+        <div class="details-card">
+          <h3>穿著</h3>
+          <p>復古法式 / 奶油白 / 墨藍 / 香檳金</p>
+          <p class="muted">避免全黑或過度螢光</p>
+        </div>
+      </div>
+      <div class="details-actions">
+        <a class="btn" href="assets/wedding.ics" download>加入行事曆</a>
+        <a class="btn btn-ghost" href="#rsvp">立即回覆出席</a>
+      </div>
+    </section>
+
+    <!-- 婚紗相冊故事 -->
+    <section class="album fold">
+      <div class="album-page">
+        <div class="album-photo">
+          <img src="assets/images/cover-left.jpg" alt="故事照片 1">
+        </div>
+        <div class="album-text">
+          <h3>那一天</h3>
+          <p>第一次一起旅行，那天我們聊到天亮。</p>
+        </div>
+      </div>
+
+      <div class="album-page reverse">
+        <div class="album-photo">
+          <img src="assets/images/cover-right.jpg" alt="故事照片 2">
+        </div>
+        <div class="album-text">
+          <h3>決定</h3>
+          <p>在最平凡的日子裡，決定一起走一輩子。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 照片牆（更豐富的視覺） -->
+    <section class="gallery fold" id="gallery">
+      <h2>照片牆</h2>
+
+      <div class="carousel" data-carousel>
+        <button class="carousel-nav prev" type="button" aria-label="上一張">‹</button>
+        <div class="carousel-viewport" tabindex="0">
+          <div class="carousel-track">
+            <button class="carousel-slide" data-src="assets/images/cover-left.jpg" aria-label="查看照片 1"></button>
+            <button class="carousel-slide" data-src="assets/images/cover-right.jpg" aria-label="查看照片 2"></button>
+            <button class="carousel-slide" data-src="assets/images/seal.jpg" aria-label="查看照片 3"></button>
+          </div>
+        </div>
+        <button class="carousel-nav next" type="button" aria-label="下一張">›</button>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="rsvp fold" id="rsvp">
+      <h2>回覆出席</h2>
+      <form id="rsvp-form" class="rsvp-form" autocomplete="on">
+        <label class="field">
+          <span>姓名</span>
+          <input name="name" required placeholder="請輸入姓名">
+        </label>
+        <label class="field">
+          <span>出席人數</span>
+          <input name="count" type="number" min="1" max="10" value="1" required>
+        </label>
+        <label class="field">
+          <span>備註</span>
+          <input name="note" placeholder="飲食需求 / 是否攜伴等">
+        </label>
+        <div class="rsvp-actions">
+          <button class="btn" type="submit">送出</button>
+          <a class="btn btn-ghost" href="#details">查看資訊</a>
+        </div>
+      </form>
+      <p class="muted">送出後會用你的預設郵件 App 打開一封回覆信。</p>
+    </section>
+
+    <!-- 地圖 -->
+    <section class="map fold">
+      <h2>婚禮地點</h2>
+      <p>台北萬豪酒店</p>
+      <a class="btn map-open" hidden target="_blank" rel="noreferrer"
+        href="https://www.google.com/maps/search/?api=1&query=%E5%8F%B0%E5%8C%97%E8%90%AC%E8%B1%AA%E9%85%92%E5%BA%97">開啟 Google 地圖</a>
+
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.889019695375!2d121.5570473150067!3d25.082651983950734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ab2d7b64c7df%3A0xf58cb1c9b7b2f9e7!2z5Y-w5YyX6KGM5YWL6YWS5bqX!5e0!3m2!1szh-TW!2stw!4v9999999999999"
+        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq fold" id="faq">
+      <h2>小提醒</h2>
+      <div class="faq-list">
+        <details>
+          <summary>可以攜伴或帶小朋友嗎？</summary>
+          <p>可以，請在 RSVP 備註告知人數與需求。</p>
+        </details>
+        <details>
+          <summary>交通與停車？</summary>
+          <p>建議搭乘計程車或捷運轉乘，亦可使用飯店停車場（依現場規定）。</p>
+        </details>
+        <details>
+          <summary>何時到最剛好？</summary>
+          <p>建議 16:40 前抵達，讓我們好好見到你。</p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/envelope.js"></script>
+  <script src="js/countdown.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/scroll-reveal.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/rsvp.js"></script>
+  <script src="js/gallery.js"></script>
+
+  <button id="music-toggle">♫</button>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lightbox-close" type="button" aria-label="關閉">×</button>
+    <img class="lightbox-img" alt="">
+  </div>
+</body>
+
+</html>
