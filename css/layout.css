@@ -23,7 +23,7 @@ section {
 
   .details,
   .gallery,
-  .rsvp,
+  .travel,
   .faq {
     background:
       linear-gradient(90deg, rgba(28, 35, 48, 0.035), transparent 16%, transparent 84%, rgba(28, 35, 48, 0.035)),
@@ -98,7 +98,7 @@ section {
 
 .details h2,
 .gallery h2,
-.rsvp h2,
+.travel h2,
 .faq h2 {
   font-size: 22px;
   letter-spacing: 1px;
@@ -111,7 +111,7 @@ section {
 .map > h2,
 .details > h2,
 .gallery > h2,
-.rsvp > h2,
+.travel > h2,
 .faq > h2 {
   position: relative;
   display: inline-block;
@@ -126,8 +126,8 @@ section {
 .details > h2::after,
 .gallery > h2::before,
 .gallery > h2::after,
-.rsvp > h2::before,
-.rsvp > h2::after,
+.travel > h2::before,
+.travel > h2::after,
 .faq > h2::before,
 .faq > h2::after {
   content: "";
@@ -142,7 +142,7 @@ section {
 .map > h2::before,
 .details > h2::before,
 .gallery > h2::before,
-.rsvp > h2::before,
+.travel > h2::before,
 .faq > h2::before {
   right: 100%;
   margin-right: 12px;
@@ -152,7 +152,7 @@ section {
 .map > h2::after,
 .details > h2::after,
 .gallery > h2::after,
-.rsvp > h2::after,
+.travel > h2::after,
 .faq > h2::after {
   left: 100%;
   margin-left: 12px;
@@ -167,8 +167,8 @@ section {
   .details > h2::after,
   .gallery > h2::before,
   .gallery > h2::after,
-  .rsvp > h2::before,
-  .rsvp > h2::after,
+  .travel > h2::before,
+  .travel > h2::after,
   .faq > h2::before,
   .faq > h2::after {
     display: none;

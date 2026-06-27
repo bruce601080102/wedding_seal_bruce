@@ -120,6 +120,14 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
+  animation: sealPortraitTurn 6.5s ease-in-out infinite;
+  transform-origin: 50% 55%;
+}
+
+@keyframes sealPortraitTurn {
+  0% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+  100% { transform: rotate(-2deg); }
 }
 /* 蠟封消失動畫 */
 .envelope.open .seal {

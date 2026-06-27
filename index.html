@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="seal">
-        <img src="assets/images/seal.jpg" alt="我們">
+        <img src="assets/images/intro_seal.jpg" alt="我們">
       </div>
       <div class="envelope-front"></div>
     </div>
@@ -158,29 +158,87 @@
       </div>
       <div class="details-actions">
         <a class="btn" href="assets/wedding.ics" download>加入行事曆</a>
-        <a class="btn btn-ghost" href="#rsvp">立即回覆出席</a>
+        <a class="btn btn-ghost" href="#travel">交通與提醒</a>
       </div>
     </section>
 
     <!-- 婚紗相冊故事 -->
     <section class="album fold">
+      <div class="album-heading">
+        <p class="album-kicker">Our Story</p>
+        <h2>婚紗相冊故事</h2>
+        <p>把幾個重要的瞬間收進這一頁，像翻開一本只屬於我們的法式相冊。</p>
+      </div>
+
       <div class="album-page">
-        <div class="album-photo">
-          <img src="assets/images/cover-left.jpg" alt="故事照片 1">
+        <div class="album-visual">
+          <figure class="album-photo main-photo">
+            <img src="assets/images/hero_left.jpg" alt="相冊主照片：那一天">
+          </figure>
+          <figure class="album-photo accent-photo top">
+            <img src="assets/images/gallery_photo_009.jpg" alt="相冊小照片 1">
+          </figure>
+          <figure class="album-photo accent-photo bottom">
+            <img src="assets/images/gallery_photo_010.jpg" alt="相冊小照片 2">
+          </figure>
         </div>
         <div class="album-text">
+          <span class="album-chapter">Chapter 01</span>
           <h3>那一天</h3>
           <p>第一次一起旅行，那天我們聊到天亮。</p>
+          <div class="album-notes">
+            <span>旅行</span>
+            <span>深夜散步</span>
+            <span>第一次想像未來</span>
+          </div>
         </div>
       </div>
 
       <div class="album-page reverse">
-        <div class="album-photo">
-          <img src="assets/images/cover-right.jpg" alt="故事照片 2">
+        <div class="album-visual">
+          <figure class="album-photo main-photo">
+            <img src="assets/images/hero_right.jpg" alt="相冊主照片：決定">
+          </figure>
+          <figure class="album-photo accent-photo top">
+            <img src="assets/images/gallery_photo_011.jpg" alt="相冊小照片 3">
+          </figure>
+          <figure class="album-photo accent-photo bottom">
+            <img src="assets/images/gallery_photo_012.jpg" alt="相冊小照片 4">
+          </figure>
         </div>
         <div class="album-text">
+          <span class="album-chapter">Chapter 02</span>
           <h3>決定</h3>
           <p>在最平凡的日子裡，決定一起走一輩子。</p>
+          <div class="album-notes">
+            <span>日常</span>
+            <span>承諾</span>
+            <span>一輩子的約定</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="album-page album-page-wide">
+        <div class="album-visual">
+          <figure class="album-photo main-photo">
+            <img src="assets/images/gallery_photo_013.jpg" alt="相冊主照片：此刻之後">
+          </figure>
+          <figure class="album-photo accent-photo top">
+            <img src="assets/images/gallery_photo_014.jpg" alt="相冊小照片 5">
+          </figure>
+          <figure class="album-photo accent-photo bottom">
+            <img src="assets/images/gallery_photo_015.jpg" alt="相冊小照片 6">
+          </figure>
+        </div>
+        <div class="album-text">
+          <span class="album-chapter">Chapter 03</span>
+          <h3>此刻之後</h3>
+          <p>接下來的每一天，都想和你一起慢慢收藏。</p>
+          <div class="album-notes">
+            <span>婚禮</span>
+            <span>家人朋友</span>
+            <span>新的開始</span>
+          </div>
         </div>
       </div>
     </section>
@@ -192,38 +250,36 @@
       <div class="carousel" data-carousel>
         <button class="carousel-nav prev" type="button" aria-label="上一張">‹</button>
         <div class="carousel-viewport" tabindex="0">
-          <div class="carousel-track">
-            <button class="carousel-slide" data-src="assets/images/cover-left.jpg" aria-label="查看照片 1"></button>
-            <button class="carousel-slide" data-src="assets/images/cover-right.jpg" aria-label="查看照片 2"></button>
-            <button class="carousel-slide" data-src="assets/images/seal.jpg" aria-label="查看照片 3"></button>
-          </div>
+          <div class="carousel-track" data-gallery-count="63"></div>
         </div>
         <button class="carousel-nav next" type="button" aria-label="下一張">›</button>
       </div>
     </section>
 
-    <!-- RSVP -->
-    <section class="rsvp fold" id="rsvp">
-      <h2>回覆出席</h2>
-      <form id="rsvp-form" class="rsvp-form" autocomplete="on">
-        <label class="field">
-          <span>姓名</span>
-          <input name="name" required placeholder="請輸入姓名">
-        </label>
-        <label class="field">
-          <span>出席人數</span>
-          <input name="count" type="number" min="1" max="10" value="1" required>
-        </label>
-        <label class="field">
-          <span>備註</span>
-          <input name="note" placeholder="飲食需求 / 是否攜伴等">
-        </label>
-        <div class="rsvp-actions">
-          <button class="btn" type="submit">送出</button>
-          <a class="btn btn-ghost" href="#details">查看資訊</a>
+    <!-- 交通 / 注意事項（取代 RSVP） -->
+    <section class="travel fold" id="travel">
+      <h2>交通與提醒</h2>
+      <div class="details-grid">
+        <div class="details-card">
+          <h3>交通</h3>
+          <p>建議搭乘計程車或捷運轉乘</p>
+          <p class="muted">下車後依指示前往宴會廳</p>
         </div>
-      </form>
-      <p class="muted">送出後會用你的預設郵件 App 打開一封回覆信。</p>
+        <div class="details-card">
+          <h3>停車</h3>
+          <p>可使用飯店停車場</p>
+          <p class="muted">依現場規定為準</p>
+        </div>
+        <div class="details-card">
+          <h3>聯絡</h3>
+          <p>臨時狀況或找不到路</p>
+          <p class="muted">請直接聯絡我們</p>
+        </div>
+      </div>
+      <div class="details-actions">
+        <a class="btn btn-ghost" href="#details">回到當日資訊</a>
+        <a class="btn" href="#faq">查看小提醒</a>
+      </div>
     </section>
 
     <!-- 地圖 -->
@@ -246,7 +302,7 @@
       <div class="faq-list">
         <details>
           <summary>可以攜伴或帶小朋友嗎？</summary>
-          <p>可以，請在 RSVP 備註告知人數與需求。</p>
+          <p>可以，建議先跟我們說一聲，方便安排座位。</p>
         </details>
         <details>
           <summary>交通與停車？</summary>
@@ -266,7 +322,6 @@
   <script src="js/audio.js"></script>
   <script src="js/scroll-reveal.js"></script>
   <script src="js/map.js"></script>
-  <script src="js/rsvp.js"></script>
   <script src="js/gallery.js"></script>
 
   <button id="music-toggle">♫</button>

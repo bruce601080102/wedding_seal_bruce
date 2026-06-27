@@ -5,6 +5,7 @@ function initGallery() {
   const viewport = document.querySelector(".carousel-viewport");
   const prev = document.querySelector(".carousel-nav.prev");
   const next = document.querySelector(".carousel-nav.next");
+  const track = document.querySelector(".carousel-track");
 
   function openLightbox(src) {
     if (!lightbox || !lightboxImg) return;
@@ -17,6 +18,25 @@ function initGallery() {
     if (!lightbox) return;
     lightbox.hidden = true;
     if (lightboxImg) lightboxImg.src = "";
+  }
+
+  // Auto-generate carousel slides based on sequential filenames.
+  if (track) {
+    const countAttr = track.getAttribute("data-gallery-count");
+    const count = Math.max(0, Math.min(999, Number(countAttr || 0) || 0));
+
+    if (count > 0 && track.children.length === 0) {
+      for (let i = 1; i <= count; i++) {
+        const n = String(i).padStart(3, "0");
+        const src = `assets/images/gallery_photo_${n}.jpg`;
+        const btn = document.createElement("button");
+        btn.className = "carousel-slide";
+        btn.type = "button";
+        btn.setAttribute("data-src", src);
+        btn.setAttribute("aria-label", `查看照片 ${i}`);
+        track.appendChild(btn);
+      }
+    }
   }
 
   // Set cover images for both legacy grid and carousel slides.
