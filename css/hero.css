@@ -230,6 +230,48 @@ html.entered .title-foil {
   color: rgba(28, 35, 48, 0.74);
 }
 
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  z-index: 4;
+  transform: translateX(-50%);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(28, 35, 48, 0.72);
+  text-decoration: none;
+  font-family: "Noto Sans TC", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  animation: scrollCueFloat 1.8s ease-in-out infinite;
+}
+
+.scroll-cue i {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(180deg, rgba(176, 141, 87, 0.18), rgba(176, 141, 87, 0.80));
+  position: relative;
+}
+
+.scroll-cue i::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid rgba(176, 141, 87, 0.86);
+  border-bottom: 1px solid rgba(176, 141, 87, 0.86);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+@keyframes scrollCueFloat {
+  0%, 100% { transform: translate(-50%, 0); opacity: 0.76; }
+  50% { transform: translate(-50%, 7px); opacity: 1; }
+}
+
 @media (max-width: 768px) {
   /* Mobile: stack photos vertically to avoid squeezing */
   .hero-dual {
@@ -262,6 +304,12 @@ html.entered .title-foil {
 
   .hero-side {
     display: none;
+  }
+
+  .scroll-cue {
+    bottom: max(18px, env(safe-area-inset-bottom));
+    color: rgba(255, 255, 255, 0.84);
+    text-shadow: 0 2px 18px rgba(0,0,0,0.35);
   }
 }
 

@@ -23,6 +23,7 @@ section {
 
   .details,
   .gallery,
+  .google-form,
   .travel,
   .faq {
     background:
@@ -98,6 +99,7 @@ section {
 
 .details h2,
 .gallery h2,
+.google-form h2,
 .travel h2,
 .faq h2 {
   font-size: 22px;
@@ -111,6 +113,7 @@ section {
 .map > h2,
 .details > h2,
 .gallery > h2,
+.google-form > h2,
 .travel > h2,
 .faq > h2 {
   position: relative;
@@ -126,6 +129,8 @@ section {
 .details > h2::after,
 .gallery > h2::before,
 .gallery > h2::after,
+.google-form > h2::before,
+.google-form > h2::after,
 .travel > h2::before,
 .travel > h2::after,
 .faq > h2::before,
@@ -142,6 +147,7 @@ section {
 .map > h2::before,
 .details > h2::before,
 .gallery > h2::before,
+.google-form > h2::before,
 .travel > h2::before,
 .faq > h2::before {
   right: 100%;
@@ -152,6 +158,7 @@ section {
 .map > h2::after,
 .details > h2::after,
 .gallery > h2::after,
+.google-form > h2::after,
 .travel > h2::after,
 .faq > h2::after {
   left: 100%;
@@ -167,6 +174,8 @@ section {
   .details > h2::after,
   .gallery > h2::before,
   .gallery > h2::after,
+  .google-form > h2::before,
+  .google-form > h2::after,
   .travel > h2::before,
   .travel > h2::after,
   .faq > h2::before,

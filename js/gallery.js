@@ -20,29 +20,49 @@ function initGallery() {
     if (lightboxImg) lightboxImg.src = "";
   }
 
-  // Auto-generate carousel slides based on sequential filenames.
-  if (track) {
-    const countAttr = track.getAttribute("data-gallery-count");
-    const count = Math.max(0, Math.min(999, Number(countAttr || 0) || 0));
+  function hydrateSlide(btn, src, index) {
+    btn.setAttribute("data-src", src);
+    btn.setAttribute("aria-label", `查看照片 ${index}`);
 
-    if (count > 0 && track.children.length === 0) {
-      for (let i = 1; i <= count; i++) {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = `照片 ${index}`;
+    img.loading = index <= 3 ? "eager" : "lazy";
+    img.decoding = "async";
+
+    img.addEventListener("error", () => {
+      btn.remove();
+    }, { once: true });
+
+    btn.appendChild(img);
+  }
+
+  // Auto-generate carousel slides based on sequential filenames.
+  // Static hosting cannot list folders, so we scan up to data-gallery-max and
+  // remove missing images as they fail to load.
+  if (track) {
+    const maxAttr = track.getAttribute("data-gallery-max");
+    const max = Math.max(0, Math.min(999, Number(maxAttr || 0) || 0));
+
+    if (max > 0 && track.children.length === 0) {
+      for (let i = 1; i <= max; i++) {
         const n = String(i).padStart(3, "0");
         const src = `assets/images/gallery_photo_${n}.jpg`;
         const btn = document.createElement("button");
         btn.className = "carousel-slide";
         btn.type = "button";
-        btn.setAttribute("data-src", src);
-        btn.setAttribute("aria-label", `查看照片 ${i}`);
+        hydrateSlide(btn, src, i);
         track.appendChild(btn);
       }
     }
   }
 
-  // Set cover images for both legacy grid and carousel slides.
+  // Set images for both legacy grid and carousel slides.
   document.querySelectorAll(".gallery-item, .carousel-slide").forEach((btn) => {
     const src = btn.getAttribute("data-src");
-    if (src) btn.style.backgroundImage = `url("${src}")`;
+    if (src && !btn.querySelector("img")) {
+      btn.style.backgroundImage = `url("${src}")`;
+    }
 
     btn.addEventListener("click", () => {
       if (!src) return;

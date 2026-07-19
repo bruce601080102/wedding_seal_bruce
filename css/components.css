@@ -665,7 +665,15 @@ main#content-page {
   aspect-ratio: 16 / 10;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .carousel-slide:hover {
@@ -740,6 +748,70 @@ main#content-page {
 .faq-list p {
   margin-top: 10px;
   color: var(--muted);
+}
+
+.google-form-intro {
+  max-width: 620px;
+  margin: 0 auto 18px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.google-form-shell {
+  max-width: 860px;
+  min-height: 280px;
+  margin: 20px auto 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(28, 35, 48, 0.12);
+  background:
+    linear-gradient(135deg, rgba(176, 141, 87, 0.08), transparent 42%),
+    rgba(255, 250, 242, 0.70);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.google-form-shell iframe {
+  display: block;
+  width: 100%;
+  min-height: 620px;
+  border: 0;
+  background: #fff;
+}
+
+.google-form-placeholder {
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  color: rgba(28, 35, 48, 0.64);
+  padding: 28px 18px;
+}
+
+.google-form-placeholder span {
+  font-family: "Cinzel", "Cormorant Garamond", ui-serif, serif;
+  letter-spacing: 4px;
+  color: rgba(176, 141, 87, 0.82);
+}
+
+.google-form-placeholder p {
+  margin: 0;
+}
+
+.fake-form-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px dashed rgba(176, 141, 87, 0.38);
+  background: rgba(255, 250, 242, 0.66);
+  color: rgba(28, 35, 48, 0.56);
+  text-decoration: none;
+  letter-spacing: 1px;
+  pointer-events: none;
+  cursor: default;
 }
 
 .lightbox {

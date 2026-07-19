@@ -111,10 +111,15 @@
         </div>
       </div>
 
+      <a class="scroll-cue" href="#letter" aria-label="往下瀏覽">
+        <span>向下滑動</span>
+        <i aria-hidden="true"></i>
+      </a>
+
     </section>
 
     <!-- 正文 -->
-    <section class="letter letter-body fold">
+    <section class="letter letter-body fold" id="letter">
       <p class="opening">
         親愛的你，
       </p>
@@ -173,13 +178,13 @@
       <div class="album-page">
         <div class="album-visual">
           <figure class="album-photo main-photo">
-            <img src="assets/images/hero_left.jpg" alt="相冊主照片：那一天">
+            <img src="assets/images/album_story_01_main.jpg" alt="相冊主照片：那一天">
           </figure>
           <figure class="album-photo accent-photo top">
-            <img src="assets/images/gallery_photo_009.jpg" alt="相冊小照片 1">
+            <img src="assets/images/album_story_01_detail_01.jpg" alt="相冊小照片 1">
           </figure>
           <figure class="album-photo accent-photo bottom">
-            <img src="assets/images/gallery_photo_010.jpg" alt="相冊小照片 2">
+            <img src="assets/images/album_story_01_detail_02.jpg" alt="相冊小照片 2">
           </figure>
         </div>
         <div class="album-text">
@@ -197,13 +202,13 @@
       <div class="album-page reverse">
         <div class="album-visual">
           <figure class="album-photo main-photo">
-            <img src="assets/images/hero_right.jpg" alt="相冊主照片：決定">
+            <img src="assets/images/album_story_02_main.jpg" alt="相冊主照片：決定">
           </figure>
           <figure class="album-photo accent-photo top">
-            <img src="assets/images/gallery_photo_011.jpg" alt="相冊小照片 3">
+            <img src="assets/images/album_story_02_detail_01.jpg" alt="相冊小照片 3">
           </figure>
           <figure class="album-photo accent-photo bottom">
-            <img src="assets/images/gallery_photo_012.jpg" alt="相冊小照片 4">
+            <img src="assets/images/album_story_02_detail_02.jpg" alt="相冊小照片 4">
           </figure>
         </div>
         <div class="album-text">
@@ -221,13 +226,13 @@
       <div class="album-page album-page-wide">
         <div class="album-visual">
           <figure class="album-photo main-photo">
-            <img src="assets/images/gallery_photo_013.jpg" alt="相冊主照片：此刻之後">
+            <img src="assets/images/album_story_03_main.jpg" alt="相冊主照片：此刻之後">
           </figure>
           <figure class="album-photo accent-photo top">
-            <img src="assets/images/gallery_photo_014.jpg" alt="相冊小照片 5">
+            <img src="assets/images/album_story_03_detail_01.jpg" alt="相冊小照片 5">
           </figure>
           <figure class="album-photo accent-photo bottom">
-            <img src="assets/images/gallery_photo_015.jpg" alt="相冊小照片 6">
+            <img src="assets/images/album_story_03_detail_02.jpg" alt="相冊小照片 6">
           </figure>
         </div>
         <div class="album-text">
@@ -250,7 +255,7 @@
       <div class="carousel" data-carousel>
         <button class="carousel-nav prev" type="button" aria-label="上一張">‹</button>
         <div class="carousel-viewport" tabindex="0">
-          <div class="carousel-track" data-gallery-count="63"></div>
+          <div class="carousel-track" data-gallery-max="160"></div>
         </div>
         <button class="carousel-nav next" type="button" aria-label="下一張">›</button>
       </div>
@@ -282,8 +287,25 @@
       </div>
     </section>
 
+    <!-- Google 問卷 -->
+    <section class="google-form fold" id="google-form" data-google-form-url="">
+      <h2>出席問卷</h2>
+      <p class="google-form-intro">請透過問卷回覆出席、餐食與同行資訊，讓我們能更細心地安排座位。</p>
+      <div class="google-form-shell">
+        <div class="google-form-placeholder">
+          <span>Google Form</span>
+          <p>正式問卷連結之後會放在這裡</p>
+          <a class="fake-form-link" href="#" aria-disabled="true">問卷連結範例</a>
+        </div>
+      </div>
+      <div class="details-actions">
+        <a class="btn google-form-link" href="#" target="_blank" rel="noreferrer" hidden>開啟問卷</a>
+        <a class="btn btn-ghost" href="#map">查看地點</a>
+      </div>
+    </section>
+
     <!-- 地圖 -->
-    <section class="map fold">
+    <section class="map fold" id="map">
       <h2>婚禮地點</h2>
       <p>台北萬豪酒店</p>
       <a class="btn map-open" hidden target="_blank" rel="noreferrer"
@@ -322,6 +344,7 @@
   <script src="js/audio.js"></script>
   <script src="js/scroll-reveal.js"></script>
   <script src="js/map.js"></script>
+  <script src="js/google-form.js"></script>
   <script src="js/gallery.js"></script>
 
   <button id="music-toggle">♫</button>
