@@ -58,6 +58,14 @@
 
   <!-- 信件內容：預設完全不可見 -->
   <main id="content-page" hidden>
+    <nav class="site-nav" aria-label="婚禮網站導覽">
+      <a href="#letter">邀請</a>
+      <a href="#details">資訊</a>
+      <a href="#album">相冊</a>
+      <a href="#gallery">照片</a>
+      <a href="#google-form">問卷</a>
+      <a href="#map">地點</a>
+    </nav>
 
     <section class="hero hero-dual">
 
@@ -116,6 +124,11 @@
         <i aria-hidden="true"></i>
       </a>
 
+      <a class="hero-form-ticket" href="#google-form" aria-label="前往出席問卷">
+        <span class="ticket-small">RSVP</span>
+        <span>填寫出席問卷</span>
+      </a>
+
     </section>
 
     <!-- 正文 -->
@@ -124,7 +137,7 @@
         親愛的你，
       </p>
 
-      <p>
+      <p data-scrub-text>
         謝謝你在我們生命裡的陪伴！在那些平凡又幸福的日子裡，我們決定要把未來交給彼此。
         期待婚禮當天見到你，一起分享我們的喜悅，見證這個最棒的時刻！
       </p>
@@ -143,18 +156,18 @@
     <!-- 資訊卡（流程/時間/加到行事曆） -->
     <section class="details fold" id="details">
       <h2>當日資訊</h2>
-      <div class="details-grid">
-        <div class="details-card">
+      <div class="details-grid bento-grid">
+        <div class="details-card bento-card">
           <h3>日期</h3>
           <p>2026 / 11 / 01（星期日）</p>
           <p class="muted">午宴12:00開席</p>
         </div>
-        <div class="details-card">
+        <div class="details-card bento-card">
           <h3>婚禮資訊</h3>
           <p>台北萬豪酒店-3F四季廳</p>
           <p>台北市中山區樂群二路199號</p>
         </div>
-        <div class="details-card">
+        <div class="details-card bento-card">
           <h3>誠摯邀請我們的至親好友</h3>
           <p>新郎：蔡仁豪 新娘：李孟庭</p>
           <p class="muted">男方家長：蔡志勝 黃秀花</p>
@@ -168,10 +181,15 @@
     </section>
 
     <!-- 拾光相冊 -->
-    <section class="album fold">
+    <section class="album fold" id="album">
       <div class="album-heading">
         <p class="album-kicker">Our Story</p>
-        <h2>拾光相冊</h2>
+        <h2>
+          拾光
+          <span class="album-inline-photo one" aria-hidden="true"></span>
+          相冊
+          <span class="album-inline-photo two" aria-hidden="true"></span>
+        </h2>
         <p>把那些幸福的瞬間收進這一頁，跟你分享我們最美好的記憶。</p>
       </div>
 
@@ -264,17 +282,17 @@
     <!-- 交通 / 注意事項（取代 RSVP） -->
     <section class="travel fold" id="travel">
       <h2>交通與提醒</h2>
-      <div class="details-grid travel-grid">
-        <div class="details-card">
+      <div class="details-grid travel-grid bento-grid">
+        <div class="details-card bento-card">
           <h3>交通</h3>
           <p>開車</p>
           <a class="text-link" href="https://maps.app.goo.gl/niY6CYC485iYUoTR7" target="_blank" rel="noreferrer">開啟導航</a>
         </div>
-        <div class="details-card">
+        <div class="details-card bento-card">
           <h3>捷運</h3>
           <p>捷運劍南路站3號出口步行約5-8分鐘</p>
         </div>
-        <div class="details-card">
+        <div class="details-card bento-card">
           <h3>公車</h3>
           <p>敬業四路（敬業四路＆樂群三路口）</p>
           <p class="muted">208・33・42・42區・553・72・藍20區・藍7</p>
@@ -283,11 +301,11 @@
           <p>大直美堤花園一（樂群二路上）</p>
           <p class="muted">268・645・645副・677・棕20・紅3・紅3區・綠16・藍26</p>
         </div>
-        <div class="details-card">
+        <div class="details-card bento-card">
           <h3>停車</h3>
           <p>用餐賓客館內四小時免費停車(停滿為限)</p>
         </div>
-        <div class="details-card">
+        <div class="details-card bento-card">
           <h3>【復古電話錄影機‧留下你的聲音與祝福】</h3>
           <p>現場特別設置了復古電話錄影機，</p>
           <p>邀請大家拿起聽筒，為我們留下當天的祝福與影像，</p>
@@ -346,8 +364,19 @@
       </div>
     </section>
 
+    <footer class="site-footer">
+      <p class="footer-kicker">Bruce & Meng Ting</p>
+      <h2>期待在婚禮那天見到你</h2>
+      <div class="details-actions">
+        <a class="btn" href="#google-form">填寫出席問卷</a>
+        <a class="btn btn-ghost" href="#map">查看婚禮地點</a>
+      </div>
+    </footer>
+
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="js/envelope.js"></script>
   <script src="js/countdown.js"></script>
   <script src="js/audio.js"></script>
@@ -355,6 +384,7 @@
   <script src="js/map.js"></script>
   <script src="js/google-form.js"></script>
   <script src="js/gallery.js"></script>
+  <script src="js/site-motion.js"></script>
 
   <button id="music-toggle">♫</button>
 

@@ -32,6 +32,7 @@ function clearInline(el) {
 function updateFold(el) {
   const vh = window.innerHeight || 1;
   const r = el.getBoundingClientRect();
+  const isFold = el.classList.contains("fold");
 
   // Trigger point: a bit below the top so it feels like "page turning"
   const enterLine = vh * 0.72;
@@ -39,7 +40,7 @@ function updateFold(el) {
 
   const shouldShow = r.top < enterLine && r.bottom > vh * 0.12;
   if (shouldShow) {
-    clearInline(el);
+    if (isFold) clearInline(el);
     el.classList.add("show");
     el.classList.remove("retract");
     return;
@@ -48,13 +49,13 @@ function updateFold(el) {
   // When scrolling up, retract items that are below the bottom line
   // so the bottom edge closes first and feels natural.
   if (dir < 0 && r.top >= bottomLine) {
-    clearInline(el);
+    if (isFold) clearInline(el);
     el.classList.remove("show");
     el.classList.add("retract");
     return;
   }
 
-  clearInline(el);
+  if (isFold) clearInline(el);
   el.classList.remove("show");
   el.classList.remove("retract");
 }

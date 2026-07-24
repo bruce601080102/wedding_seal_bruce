@@ -1,5 +1,5 @@
 section {
-  padding: clamp(56px, 7vw, 92px) 20px;
+  padding: clamp(72px, 8vw, 124px) 20px;
   text-align: center;
   position: relative;
   z-index: 1;
@@ -8,8 +8,8 @@ section {
 /* Wide-screen framing: reduce "empty sides" while keeping readability */
 @media (min-width: 1100px) {
   section {
-    padding-left: 44px;
-    padding-right: 44px;
+    padding-left: 56px;
+    padding-right: 56px;
   }
 
   .countdown-section,
@@ -96,6 +96,19 @@ section {
   inset: 10px;
   border-radius: calc(var(--radius-lg) - 8px);
   border: 1px solid rgba(176, 141, 87, 0.22);
+  pointer-events: none;
+}
+
+.details::before,
+.gallery::before,
+.google-form::before,
+.travel::before,
+.faq::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: calc(var(--radius-lg) - 8px);
+  border: 1px solid rgba(176, 141, 87, 0.16);
   pointer-events: none;
 }
 
