@@ -6,40 +6,64 @@ function initGallery() {
   const prev = document.querySelector(".carousel-nav.prev");
   const next = document.querySelector(".carousel-nav.next");
   const track = document.querySelector(".carousel-track");
+  const prefersMobileImages = window.matchMedia("(max-width: 768px)").matches;
 
-  function openLightbox(src) {
+  function mobileSrcFor(src) {
+    return src.replace(/(\.[^.]+)$/, "_mobile.jpg");
+  }
+
+  function openLightbox(src, fallbackSrc) {
     if (!lightbox || !lightboxImg) return;
+
+    lightboxImg.onerror = () => {
+      if (fallbackSrc && !lightboxImg.src.endsWith(fallbackSrc)) {
+        lightboxImg.src = fallbackSrc;
+      }
+    };
     lightboxImg.src = src;
-    lightboxImg.alt = "照片";
+    lightboxImg.alt = "婚紗照片";
     lightbox.hidden = false;
   }
 
   function closeLightbox() {
     if (!lightbox) return;
     lightbox.hidden = true;
-    if (lightboxImg) lightboxImg.src = "";
+    if (lightboxImg) {
+      lightboxImg.onerror = null;
+      lightboxImg.src = "";
+    }
   }
 
   function hydrateSlide(btn, src, index) {
+    const previewSrc = prefersMobileImages ? mobileSrcFor(src) : src;
+
     btn.setAttribute("data-src", src);
-    btn.setAttribute("aria-label", `查看照片 ${index}`);
+    btn.setAttribute("data-preview-src", previewSrc);
+    btn.setAttribute("aria-label", `婚紗照片 ${index}`);
 
     const img = document.createElement("img");
-    img.src = src;
-    img.alt = `照片 ${index}`;
+    img.src = previewSrc;
+    img.alt = `婚紗照片 ${index}`;
     img.loading = index <= 3 ? "eager" : "lazy";
     img.decoding = "async";
 
+    let triedFullImage = previewSrc === src;
     img.addEventListener("error", () => {
+      if (!triedFullImage) {
+        triedFullImage = true;
+        btn.setAttribute("data-preview-src", src);
+        img.src = src;
+        return;
+      }
+
       btn.remove();
-    }, { once: true });
+    });
 
     btn.appendChild(img);
   }
 
-  // Auto-generate carousel slides based on sequential filenames.
-  // Static hosting cannot list folders, so we scan up to data-gallery-max and
-  // remove missing images as they fail to load.
+  // Static hosting cannot list folders, so scan sequential filenames and
+  // remove slides whose image file does not exist.
   if (track) {
     const maxAttr = track.getAttribute("data-gallery-max");
     const max = Math.max(0, Math.min(999, Number(maxAttr || 0) || 0));
@@ -57,16 +81,19 @@ function initGallery() {
     }
   }
 
-  // Set images for both legacy grid and carousel slides.
   document.querySelectorAll(".gallery-item, .carousel-slide").forEach((btn) => {
     const src = btn.getAttribute("data-src");
-    if (src && !btn.querySelector("img")) {
-      btn.style.backgroundImage = `url("${src}")`;
+    const previewSrc = btn.getAttribute("data-preview-src") || src;
+
+    if (previewSrc && !btn.querySelector("img")) {
+      btn.style.backgroundImage = `url("${previewSrc}")`;
     }
 
     btn.addEventListener("click", () => {
-      if (!src) return;
-      openLightbox(src);
+      const fullSrc = btn.getAttribute("data-src");
+      const fallbackSrc = btn.getAttribute("data-preview-src");
+      if (!fullSrc) return;
+      openLightbox(fullSrc, fallbackSrc);
     });
   });
 

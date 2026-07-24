@@ -30,6 +30,8 @@
   /* Image assignments (change these to swap images by section) */
   --hero-left-img: url("../assets/images/hero_left.jpg");
   --hero-right-img: url("../assets/images/hero_right.jpg");
+  --hero-left-mobile-img: url("../assets/images/hero_left_mobile.jpg");
+  --hero-right-mobile-img: url("../assets/images/hero_right_mobile.jpg");
 }
 
 html {

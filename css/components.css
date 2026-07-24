@@ -258,6 +258,16 @@ main#content-page {
   transform: translateY(-4px) rotate(2deg);
 }
 
+@media (max-width: 768px) {
+  .album-inline-photo.one {
+    background-image: url("../assets/images/album_story_01_detail_01_mobile.jpg");
+  }
+
+  .album-inline-photo.two {
+    background-image: url("../assets/images/album_story_02_detail_02_mobile.jpg");
+  }
+}
+
 .album-page {
   display: grid;
   grid-template-columns: minmax(420px, 1.18fr) minmax(280px, 0.82fr);
@@ -294,9 +304,13 @@ main#content-page {
   margin: 0;
 }
 
+.album-photo picture,
 .album-photo img {
   width: 100%;
   display: block;
+}
+
+.album-photo img {
   object-fit: cover;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
