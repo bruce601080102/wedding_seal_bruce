@@ -42,22 +42,19 @@ function updateFold(el) {
   if (shouldShow) {
     if (isFold) clearInline(el);
     el.classList.add("show");
-    el.classList.remove("retract");
     return;
   }
 
-  // When scrolling up, retract items that are below the bottom line
-  // so the bottom edge closes first and feels natural.
+  // While returning to the top, avoid folding every section at once.
+  // A simple reset prevents sections from visually bunching together.
   if (dir < 0 && r.top >= bottomLine) {
     if (isFold) clearInline(el);
     el.classList.remove("show");
-    el.classList.add("retract");
     return;
   }
 
   if (isFold) clearInline(el);
   el.classList.remove("show");
-  el.classList.remove("retract");
 }
 
 schedule();

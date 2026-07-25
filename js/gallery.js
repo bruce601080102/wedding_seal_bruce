@@ -6,7 +6,10 @@ function initGallery() {
   const prev = document.querySelector(".carousel-nav.prev");
   const next = document.querySelector(".carousel-nav.next");
   const track = document.querySelector(".carousel-track");
+  const progressBar = document.querySelector(".carousel-progress-bar");
+  const progressCount = document.querySelector(".carousel-progress-count");
   const prefersMobileImages = window.matchMedia("(max-width: 768px)").matches;
+  let progressScheduled = false;
 
   function mobileSrcFor(src) {
     return src.replace(/(\.[^.]+)$/, "_mobile.jpg");
@@ -63,6 +66,9 @@ function initGallery() {
   }
 
   function bindSlide(btn) {
+    if (btn.dataset.bound === "true") return;
+    btn.dataset.bound = "true";
+
     const src = btn.getAttribute("data-src");
     const previewSrc = btn.getAttribute("data-preview-src") || src;
 
@@ -75,6 +81,119 @@ function initGallery() {
       const fallbackSrc = btn.getAttribute("data-preview-src");
       if (!fullSrc) return;
       openLightbox(fullSrc, fallbackSrc);
+    });
+  }
+
+  function smoothScrollTo(left, duration = 620) {
+    if (!viewport) return;
+
+    const start = viewport.scrollLeft;
+    const distance = left - start;
+    if (Math.abs(distance) < 1) return;
+
+    const startTime = performance.now();
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+
+    function frame(now) {
+      const progress = Math.min(1, (now - startTime) / duration);
+      viewport.scrollLeft = start + distance * ease(progress);
+      updateProgress();
+      if (progress < 1) requestAnimationFrame(frame);
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  function updateProgress() {
+    if (!viewport || !progressBar) return;
+
+    const maxScroll = Math.max(1, viewport.scrollWidth - viewport.clientWidth);
+    const ratio = Math.max(0, Math.min(1, viewport.scrollLeft / maxScroll));
+    progressBar.style.width = `${Math.max(4, ratio * 100)}%`;
+
+    if (progressCount) {
+      const slides = Array.from(viewport.querySelectorAll(".carousel-slide"));
+      if (!slides.length) {
+        progressCount.textContent = "01";
+        return;
+      }
+
+      const viewportCenter = viewport.scrollLeft + viewport.clientWidth / 2;
+      let active = 0;
+      let closest = Infinity;
+      slides.forEach((slide, index) => {
+        const center = slide.offsetLeft + slide.offsetWidth / 2;
+        const distance = Math.abs(center - viewportCenter);
+        if (distance < closest) {
+          closest = distance;
+          active = index;
+        }
+      });
+      progressCount.textContent = String(active + 1).padStart(2, "0");
+    }
+  }
+
+  function scheduleProgress() {
+    if (progressScheduled) return;
+    progressScheduled = true;
+    requestAnimationFrame(() => {
+      progressScheduled = false;
+      updateProgress();
+    });
+  }
+
+  function initDragScroll() {
+    if (!viewport) return;
+
+    let isDown = false;
+    let startX = 0;
+    let startLeft = 0;
+    let moved = false;
+
+    viewport.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      isDown = true;
+      moved = false;
+      startX = event.clientX;
+      startLeft = viewport.scrollLeft;
+      viewport.classList.add("is-dragging");
+      viewport.setPointerCapture?.(event.pointerId);
+    });
+
+    viewport.addEventListener("pointermove", (event) => {
+      if (!isDown) return;
+      const delta = event.clientX - startX;
+      if (Math.abs(delta) > 4) moved = true;
+      viewport.scrollLeft = startLeft - delta;
+    });
+
+    function endDrag(event) {
+      if (!isDown) return;
+      isDown = false;
+      viewport.classList.remove("is-dragging");
+      viewport.releasePointerCapture?.(event.pointerId);
+      setTimeout(() => { moved = false; }, 40);
+    }
+
+    viewport.addEventListener("pointerup", endDrag);
+    viewport.addEventListener("pointercancel", endDrag);
+    viewport.addEventListener("pointerleave", endDrag);
+
+    viewport.addEventListener("click", (event) => {
+      if (!moved) return;
+      event.preventDefault();
+      event.stopPropagation();
+    }, true);
+
+    viewport.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        step(-1);
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        step(1);
+      }
     });
   }
 
@@ -109,6 +228,7 @@ function initGallery() {
       hydrateSlide(btn, src, i);
       bindSlide(btn);
       track.appendChild(btn);
+      updateProgress();
     }
   }
 
@@ -131,11 +251,17 @@ function initGallery() {
     if (!viewport) return;
     const first = viewport.querySelector(".carousel-slide");
     const w = first ? first.getBoundingClientRect().width : viewport.clientWidth * 0.9;
-    viewport.scrollBy({ left: dir * (w + 14), behavior: "smooth" });
+    smoothScrollTo(viewport.scrollLeft + dir * (w + 14));
   }
 
   if (prev) prev.addEventListener("click", () => step(-1));
   if (next) next.addEventListener("click", () => step(1));
+  if (viewport) {
+    viewport.addEventListener("scroll", scheduleProgress, { passive: true });
+    window.addEventListener("resize", scheduleProgress, { passive: true });
+  }
+  initDragScroll();
+  updateProgress();
 
   if (lightboxClose) {
     lightboxClose.addEventListener("click", closeLightbox);

@@ -34,7 +34,8 @@
       scrollTrigger: {
         trigger: card,
         start: isMobile ? "top 92%" : "top 86%",
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none none",
+        once: true,
       },
     });
   });
