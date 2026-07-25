@@ -3,10 +3,12 @@
 
   const { gsap } = window;
   gsap.registerPlugin(window.ScrollTrigger);
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const imageTargets = isMobile ? ".album-photo img" : ".album-photo img, .carousel-slide img";
 
-  gsap.utils.toArray(".album-photo img, .carousel-slide img").forEach((img) => {
+  gsap.utils.toArray(imageTargets).forEach((img) => {
     gsap.fromTo(img,
-      { scale: 0.92, opacity: 0.72, filter: "saturate(0.82) contrast(1.02)" },
+      { scale: isMobile ? 0.98 : 0.92, opacity: isMobile ? 0.86 : 0.72, filter: "saturate(0.86) contrast(1.02)" },
       {
         scale: 1,
         opacity: 1,
@@ -24,14 +26,14 @@
 
   gsap.utils.toArray(".bento-card").forEach((card, index) => {
     gsap.from(card, {
-      y: 34,
+      y: isMobile ? 18 : 34,
       opacity: 0,
-      duration: 0.85,
+      duration: isMobile ? 0.55 : 0.85,
       ease: "power3.out",
-      delay: (index % 3) * 0.06,
+      delay: isMobile ? 0 : (index % 3) * 0.06,
       scrollTrigger: {
         trigger: card,
-        start: "top 86%",
+        start: isMobile ? "top 92%" : "top 86%",
         toggleActions: "play none none reverse",
       },
     });

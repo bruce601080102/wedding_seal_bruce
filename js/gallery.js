@@ -62,26 +62,7 @@ function initGallery() {
     btn.appendChild(img);
   }
 
-  // Static hosting cannot list folders, so scan sequential filenames and
-  // remove slides whose image file does not exist.
-  if (track) {
-    const maxAttr = track.getAttribute("data-gallery-max");
-    const max = Math.max(0, Math.min(999, Number(maxAttr || 0) || 0));
-
-    if (max > 0 && track.children.length === 0) {
-      for (let i = 1; i <= max; i++) {
-        const n = String(i).padStart(3, "0");
-        const src = `assets/images/gallery_photo_${n}.jpg`;
-        const btn = document.createElement("button");
-        btn.className = "carousel-slide";
-        btn.type = "button";
-        hydrateSlide(btn, src, i);
-        track.appendChild(btn);
-      }
-    }
-  }
-
-  document.querySelectorAll(".gallery-item, .carousel-slide").forEach((btn) => {
+  function bindSlide(btn) {
     const src = btn.getAttribute("data-src");
     const previewSrc = btn.getAttribute("data-preview-src") || src;
 
@@ -95,6 +76,55 @@ function initGallery() {
       if (!fullSrc) return;
       openLightbox(fullSrc, fallbackSrc);
     });
+  }
+
+  function probeImage(src) {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = src;
+    });
+  }
+
+  async function hydrateGeneratedGallery(max) {
+    let misses = 0;
+    const stopAfterMisses = 10;
+
+    for (let i = 1; i <= max && misses < stopAfterMisses; i++) {
+      const n = String(i).padStart(3, "0");
+      const src = `assets/images/gallery_photo_${n}.jpg`;
+      const previewSrc = prefersMobileImages ? mobileSrcFor(src) : src;
+      const exists = await probeImage(previewSrc) || await probeImage(src);
+
+      if (!exists) {
+        misses += 1;
+        continue;
+      }
+
+      misses = 0;
+      const btn = document.createElement("button");
+      btn.className = "carousel-slide";
+      btn.type = "button";
+      hydrateSlide(btn, src, i);
+      bindSlide(btn);
+      track.appendChild(btn);
+    }
+  }
+
+  // Static hosting cannot list folders, so scan sequential filenames and
+  // stop after several misses instead of requesting every possible image.
+  if (track) {
+    const maxAttr = track.getAttribute("data-gallery-max");
+    const max = Math.max(0, Math.min(999, Number(maxAttr || 0) || 0));
+
+    if (max > 0 && track.children.length === 0) {
+      hydrateGeneratedGallery(max);
+    }
+  }
+
+  document.querySelectorAll(".gallery-item, .carousel-slide").forEach((btn) => {
+    bindSlide(btn);
   });
 
   function step(dir) {

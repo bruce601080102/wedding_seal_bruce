@@ -654,7 +654,9 @@ main#content-page {
   text-align: left;
   padding: 18px 18px 16px;
   border-radius: var(--radius-md);
-  background: rgba(255, 250, 242, 0.78);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.34), transparent 42%),
+    rgba(255, 250, 242, 0.78);
   border: 1px solid rgba(28, 35, 48, 0.10);
   min-width: 0;
   overflow: hidden;
@@ -889,41 +891,61 @@ main#content-page {
   }
 
   .carousel-track {
-    grid-auto-columns: 88%;
+    grid-auto-columns: 82%;
+    gap: 10px;
+    padding: 4px;
   }
 
   .carousel-slide {
     aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+    box-shadow: 0 18px 42px rgba(0,0,0,0.13);
   }
 }
 
 .faq-list {
-  margin: 18px auto 0;
-  max-width: 820px;
+  margin: 20px auto 0;
+  max-width: 860px;
   text-align: left;
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
-.faq-list details {
+.faq-card {
+  position: relative;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(28, 35, 48, 0.12);
-  background: rgba(255, 250, 242, 0.82);
-  padding: 12px 14px;
+  border: 1px solid rgba(176, 141, 87, 0.22);
+  background:
+    linear-gradient(135deg, rgba(176, 141, 87, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(255, 250, 242, 0.92), rgba(246, 240, 230, 0.82));
+  padding: clamp(18px, 3.4vw, 28px);
+  box-shadow: 0 18px 46px rgba(0,0,0,0.10);
+  overflow: hidden;
 }
 
-.faq-list summary {
-  cursor: pointer;
-  list-style: none;
+.faq-card::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 14px;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(176, 141, 87, 0.78), rgba(106, 32, 64, 0.42));
+}
+
+.faq-title {
+  padding-left: 14px;
   font-weight: 600;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  line-height: 1.5;
 }
-
-.faq-list summary::-webkit-details-marker { display: none; }
 
 .faq-list p {
   margin-top: 10px;
+  padding-left: 14px;
   color: var(--muted);
+  line-height: 1.9;
 }
 
 .google-form-intro {
@@ -944,6 +966,10 @@ main#content-page {
     rgba(255, 250, 242, 0.70);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+}
+
+.google-form-shell:hover {
+  border-color: rgba(176, 141, 87, 0.24);
 }
 
 .google-form-shell iframe {
@@ -1060,6 +1086,26 @@ main#content-page {
     grid-row: auto;
     min-height: auto;
   }
+
+  .details-card {
+    padding: 16px 16px 15px;
+  }
+
+  .details-card:hover,
+  .carousel-slide:hover,
+  .btn:hover {
+    transform: none;
+  }
+
+  .google-form-shell {
+    border-radius: var(--radius-md);
+  }
+
+  .map iframe {
+    height: 340px;
+    border-radius: var(--radius-md);
+  }
+
   .gallery-item:nth-child(1),
   .gallery-item:nth-child(2),
   .gallery-item:nth-child(3) { grid-column: 1 / span 12; }
