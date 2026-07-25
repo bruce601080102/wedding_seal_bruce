@@ -23,7 +23,7 @@
 <body class="locked">
 
   <!-- 背景音樂 -->
-  <!-- <audio id="bgm" src="assets/music/bgm.mp3" loop></audio> -->
+  <audio id="bgm" src="mp3/yung kai - yung kai - blue (official music video).mp3" loop preload="metadata"></audio>
 
   <!-- 信封頁 -->
   <section id="envelope-page">
@@ -115,7 +115,7 @@
           <div class="hero-ornament" aria-hidden="true"></div>
           <p class="hero-kicker">Wedding Invitation</p>
           <h1 class="hero-title">
-            <span class="title-foil">我們 結婚了</span>
+            <span class="title-foil">我們結婚了</span>
           </h1>
           <span class="dot" aria-hidden="true"></span>
           <p class="hero-sub">台北萬豪酒店</p>
@@ -178,7 +178,9 @@
         </div>
       </div>
       <div class="details-actions">
-        <a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bruce%20%26%20Meng%20Ting%20Wedding&dates=20261101T120000/20261101T150000&ctz=Asia/Taipei&details=%E8%AB%8B%E5%B8%B6%E8%91%97%E5%A5%BD%E5%BF%83%E6%83%85%E4%BE%86%E5%8F%83%E5%8A%A0%E6%88%91%E5%80%91%E7%9A%84%E5%A9%9A%E7%A6%AE&location=%E5%8F%B0%E5%8C%97%E8%90%AC%E8%B1%AA%E9%85%92%E5%BA%97" target="_blank" rel="noreferrer">加入 Google 日曆</a>
+        <a class="btn"
+          href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bruce%20%26%20Meng%20Ting%20Wedding&dates=20261101T120000/20261101T150000&ctz=Asia/Taipei&details=%E8%AB%8B%E5%B8%B6%E8%91%97%E5%A5%BD%E5%BF%83%E6%83%85%E4%BE%86%E5%8F%83%E5%8A%A0%E6%88%91%E5%80%91%E7%9A%84%E5%A9%9A%E7%A6%AE&location=%E5%8F%B0%E5%8C%97%E8%90%AC%E8%B1%AA%E9%85%92%E5%BA%97"
+          target="_blank" rel="noreferrer">加入 Google 日曆</a>
         <a class="btn btn-ghost" href="#travel">交通與提醒</a>
       </div>
     </section>
@@ -328,10 +330,11 @@
           <p>用餐賓客館內四小時免費停車(停滿為限)</p>
         </div>
         <div class="details-card bento-card">
-          <h3>【復古電話錄影機‧留下你的聲音與祝福】</h3>
-          <p>現場特別設置了復古電話錄影機，</p>
-          <p>邀請大家拿起聽筒，為我們留下當天的祝福與影像，</p>
-          <p>成為我們這一天最珍貴的回憶之一。</p>
+          <h3>【復古電話錄影機】</h3>
+          <p>現場特別設置了復古電話錄影機</p>
+          <p>邀請大家拿起聽筒</p>
+          <p>為我們留下當天的祝福與影像</p>
+          <p>成為我們這一天最珍貴的回憶之一</p>
         </div>
       </div>
 
@@ -342,10 +345,11 @@
     </section>
 
     <!-- Google 問卷 -->
-    <section class="google-form fold" id="google-form" data-google-form-url="">
+    <section class="google-form fold" id="google-form"
+      data-google-form-url="https://docs.google.com/forms/d/1QQXQpcCr2y8HHqzhk38zwEOGkTOh3Spdoa44yfnDTck/viewform?usp=drivesdk">
       <h2>出席問卷</h2>
       <p class="google-form-intro">請幫我們填寫出席狀況、餐點偏好與同行人數</p>
-      <p class="google-form-intro">我們要把位置留給最重要的你～等你來玩唷！</p>
+      <p class="google-form-intro">我們要把位置留給最重要的你！</p>
       <div class="google-form-shell">
         <div class="google-form-placeholder">
           <span>Google Form</span>
@@ -380,7 +384,6 @@
       <div class="faq-list">
         <div class="faq-card">
           <div class="faq-title">婚禮當天小提醒</div>
-          <p>提早抵達可以先跟我們拍拍照、敘敘舊！</p>
           <p>當天備有美酒，想嗨一下的朋友建議搭乘大眾運輸或找代駕，千萬別開車唷！</p>
         </div>
       </div>
@@ -408,7 +411,7 @@
   <script src="js/gallery.js"></script>
   <script src="js/site-motion.js"></script>
 
-  <button id="music-toggle">♫</button>
+  <button id="music-toggle" type="button" aria-label="播放或暫停音樂" aria-pressed="false">♪</button>
 
   <div id="lightbox" class="lightbox" hidden>
     <button class="lightbox-close" type="button" aria-label="關閉">×</button>

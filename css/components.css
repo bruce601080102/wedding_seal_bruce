@@ -173,13 +173,34 @@ main#content-page {
 }
 
 .time-box {
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--hairline);
-  background: rgba(255, 250, 242, 0.82);
+  background:
+    linear-gradient(180deg, rgba(176, 141, 87, 0.10), transparent 36%),
+    rgba(255, 250, 242, 0.82);
   backdrop-filter: blur(8px);
   padding: 18px 18px 16px;
   border-radius: var(--radius-md);
   min-width: 112px;
   box-shadow: var(--shadow-sm);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.time-box::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  right: 14px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(176, 141, 87, 0.42), transparent);
+}
+
+.time-box:hover {
+  transform: translateY(-2px);
+  border-color: rgba(176, 141, 87, 0.26);
+  box-shadow: 0 20px 52px rgba(0,0,0,0.15);
 }
 
 .time-box span {
@@ -538,19 +559,42 @@ main#content-page {
   height: 48px;
   border-radius: 50%;
   border: 1px solid var(--hairline);
-  background: rgba(255, 255, 255, 0.72);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.92), rgba(255,255,255,0.56) 58%),
+    rgba(255, 250, 242, 0.72);
   backdrop-filter: blur(10px);
   font-size: 20px;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   z-index: 999;
-  color: var(--text);
+  color: var(--ink);
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+#music-toggle::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: inherit;
+  border: 1px dashed rgba(176, 141, 87, 0.48);
 }
 
 #music-toggle:hover {
   transform: scale(1.1);
   box-shadow: var(--shadow-md);
+}
+
+#music-toggle.is-playing {
+  color: var(--accent-3);
+  animation: musicSpin 3.6s linear infinite;
+  box-shadow:
+    var(--shadow-sm),
+    0 0 0 6px rgba(176, 141, 87, 0.10);
+}
+
+@keyframes musicSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* 地圖像「邀請函的一頁」 */
@@ -608,6 +652,9 @@ main#content-page {
 
 /* Buttons / forms / utility */
 .btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -624,14 +671,45 @@ main#content-page {
   transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(120deg, transparent 0 32%, rgba(255,255,255,0.72) 44%, transparent 56% 100%);
+  transform: translateX(-125%);
+  opacity: 0;
+}
+
+.btn::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin-left: 10px;
+  border-radius: 999px;
+  background: rgba(176, 141, 87, 0.70);
+  box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.10);
+}
+
 .btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 18px 44px rgba(0,0,0,0.16);
 }
 
+.btn:hover::before {
+  animation: buttonGleam 780ms ease forwards;
+  opacity: 1;
+}
+
 .btn-ghost {
   background: transparent;
   border-color: rgba(176, 141, 87, 0.30);
+}
+
+.btn-ghost::after {
+  background: rgba(28, 35, 48, 0.34);
+  box-shadow: 0 0 0 3px rgba(28, 35, 48, 0.07);
 }
 
 .muted {
@@ -651,6 +729,8 @@ main#content-page {
 }
 
 .details-card {
+  position: relative;
+  isolation: isolate;
   text-align: left;
   padding: 18px 18px 16px;
   border-radius: var(--radius-md);
@@ -663,10 +743,39 @@ main#content-page {
   transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
 }
 
+.details-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, transparent 0 42%, rgba(255,255,255,0.50) 50%, transparent 58% 100%);
+  transform: translateX(-120%);
+  opacity: 0;
+}
+
+.details-card::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  width: 34px;
+  height: 34px;
+  border-right: 1px solid rgba(176, 141, 87, 0.28);
+  border-bottom: 1px solid rgba(176, 141, 87, 0.28);
+  border-radius: 0 0 12px 0;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
 .details-card:hover {
   transform: translateY(-3px);
   border-color: rgba(176, 141, 87, 0.28);
   box-shadow: 0 22px 54px rgba(0,0,0,0.14);
+}
+
+.details-card:hover::before {
+  animation: cardGleam 900ms ease forwards;
+  opacity: 1;
 }
 
 .details-card h3 {
@@ -834,6 +943,7 @@ main#content-page {
 }
 
 .carousel-slide {
+  position: relative;
   scroll-snap-align: center;
   border: 1px solid rgba(28, 35, 48, 0.12);
   border-radius: var(--radius-lg);
@@ -847,17 +957,39 @@ main#content-page {
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 
+.carousel-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.24), transparent 28%),
+    linear-gradient(0deg, rgba(15,16,18,0.18), transparent 34%);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
 .carousel-slide img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
+  transition: transform 520ms ease, filter 520ms ease;
 }
 
 .carousel-slide:hover {
   transform: translateY(-2px);
   box-shadow: 0 30px 90px rgba(0,0,0,0.18);
   filter: saturate(1.02);
+}
+
+.carousel-slide:hover::after {
+  opacity: 1;
+}
+
+.carousel-slide:hover img {
+  transform: scale(1.035);
+  filter: saturate(1.04) contrast(1.03);
 }
 
 .carousel-nav {
@@ -956,6 +1088,8 @@ main#content-page {
 }
 
 .google-form-shell {
+  position: relative;
+  isolation: isolate;
   max-width: 860px;
   min-height: 280px;
   margin: 20px auto 0;
@@ -966,6 +1100,30 @@ main#content-page {
     rgba(255, 250, 242, 0.70);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+}
+
+.google-form-shell::before,
+.google-form-shell::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.google-form-shell::before {
+  inset: 12px;
+  z-index: 0;
+  border-radius: calc(var(--radius-lg) - 10px);
+  border: 1px dashed rgba(176, 141, 87, 0.28);
+}
+
+.google-form-shell::after {
+  top: 0;
+  bottom: 0;
+  left: 24px;
+  width: 1px;
+  z-index: 0;
+  background: repeating-linear-gradient(180deg, rgba(176,141,87,0.34) 0 8px, transparent 8px 17px);
+  opacity: 0.72;
 }
 
 .google-form-shell:hover {
@@ -981,6 +1139,8 @@ main#content-page {
 }
 
 .google-form-placeholder {
+  position: relative;
+  z-index: 1;
   min-height: 280px;
   display: grid;
   place-items: center;
@@ -988,6 +1148,25 @@ main#content-page {
   gap: 12px;
   color: rgba(28, 35, 48, 0.64);
   padding: 28px 18px;
+}
+
+.google-form-placeholder::before {
+  content: "RSVP";
+  position: absolute;
+  top: 22px;
+  right: clamp(18px, 4vw, 42px);
+  width: 68px;
+  height: 68px;
+  border-radius: 999px;
+  border: 1px solid rgba(176, 141, 87, 0.36);
+  display: grid;
+  place-items: center;
+  font-family: "Cinzel", "Cormorant Garamond", ui-serif, serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: rgba(143, 115, 71, 0.72);
+  transform: rotate(10deg);
+  box-shadow: inset 0 0 0 5px rgba(176, 141, 87, 0.06);
 }
 
 .google-form-placeholder span {
@@ -1001,6 +1180,8 @@ main#content-page {
 }
 
 .fake-form-link {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1014,6 +1195,31 @@ main#content-page {
   letter-spacing: 1px;
   pointer-events: none;
   cursor: default;
+}
+
+.fake-form-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0 36%, rgba(255,255,255,0.72) 50%, transparent 64% 100%);
+  transform: translateX(-130%);
+  animation: ticketHintSweep 4.2s ease-in-out infinite;
+}
+
+@keyframes buttonGleam {
+  0% { transform: translateX(-125%); }
+  100% { transform: translateX(125%); }
+}
+
+@keyframes cardGleam {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+@keyframes ticketHintSweep {
+  0%, 38% { transform: translateX(-130%); opacity: 0; }
+  48% { opacity: 1; }
+  62%, 100% { transform: translateX(130%); opacity: 0; }
 }
 
 .lightbox {
@@ -1093,8 +1299,20 @@ main#content-page {
 
   .details-card:hover,
   .carousel-slide:hover,
+  .time-box:hover,
   .btn:hover {
     transform: none;
+  }
+
+  .details-card:hover::before,
+  .btn:hover::before {
+    animation: none;
+    opacity: 0;
+  }
+
+  .carousel-slide:hover img {
+    transform: none;
+    filter: none;
   }
 
   .google-form-shell {
@@ -1124,5 +1342,23 @@ main#content-page {
   #music-toggle {
     right: 14px;
     bottom: max(12px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn::before,
+  .details-card::before,
+  .fake-form-link::before {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .carousel-slide img,
+  .time-box,
+  .details-card,
+  .btn,
+  #music-toggle.is-playing {
+    transition: none !important;
+    animation: none !important;
   }
 }

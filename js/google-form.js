@@ -7,9 +7,13 @@
   const link = section.querySelector(".google-form-link");
   if (!rawUrl || !shell) return;
 
+  const publicUrl = rawUrl
+    .replace(/\/edit(\?[^#]*)?$/, "/viewform")
+    .replace(/\/edit#.*$/, "/viewform");
+
   const embedUrl = rawUrl.includes("embedded=true")
     ? rawUrl
-    : rawUrl.replace(/\/viewform(\?[^#]*)?/, "/viewform?embedded=true");
+    : publicUrl.replace(/\/viewform(\?[^#]*)?/, "/viewform?embedded=true");
 
   shell.innerHTML = "";
   const iframe = document.createElement("iframe");
@@ -19,7 +23,7 @@
   shell.appendChild(iframe);
 
   if (link) {
-    link.href = rawUrl;
+    link.href = publicUrl;
     link.hidden = false;
   }
 })();

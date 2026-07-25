@@ -7,6 +7,9 @@ function openInvitation() {
   if (envelope.classList.contains("open")) return;
   envelope.classList.add("open");
   document.documentElement.classList.add("opening");
+  if (typeof window.startWeddingMusic === "function") {
+    window.startWeddingMusic();
+  }
 
   // 信封動畫跑完
   setTimeout(() => {
