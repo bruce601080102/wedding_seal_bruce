@@ -801,6 +801,8 @@ main#content-page {
   grid-template-columns: 44px 1fr 44px;
   gap: 10px;
   align-items: center;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .carousel-viewport {
@@ -810,6 +812,9 @@ main#content-page {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   border-radius: var(--radius-lg);
+  max-width: 100%;
+  min-width: 0;
+  overscroll-behavior-x: contain;
 }
 
 .carousel-viewport::-webkit-scrollbar {
@@ -823,6 +828,7 @@ main#content-page {
   grid-auto-columns: minmax(320px, 1fr);
   gap: 14px;
   padding: 6px;
+  min-width: 0;
 }
 
 .carousel-slide {
@@ -1023,11 +1029,18 @@ main#content-page {
     left: 10px;
     bottom: max(12px, env(safe-area-inset-bottom));
     transform: none;
-    width: calc(100vw - 88px);
+    width: calc(100dvw - 88px);
     max-width: none;
     overflow-x: auto;
     justify-content: flex-start;
     scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  @supports not (width: 100dvw) {
+    .site-nav {
+      width: calc(100vw - 88px);
+    }
   }
 
   .site-nav::-webkit-scrollbar {

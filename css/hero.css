@@ -333,21 +333,41 @@ html.entered .title-foil {
 }
 
 @media (max-width: 768px) {
+  .hero,
+  .hero-dual {
+    height: 100svh;
+    min-height: 620px;
+    max-height: 860px;
+  }
+
+  @supports (height: 100dvh) {
+    .hero,
+    .hero-dual {
+      height: 100dvh;
+    }
+  }
+
   .hero-dual {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: 1fr;
   }
 
+  .hero-center-text {
+    top: 68%;
+    width: min(238px, calc(100vw - 92px));
+  }
+
   .hero-photo.left {
     grid-column: 1;
     background-image: var(--hero-left-mobile-img);
-    background-position: 44% 72%;
+    background-size: auto 112%;
+    background-position: 44% 100%;
   }
 
   .hero-photo.right {
     grid-column: 2;
     background-image: var(--hero-right-mobile-img);
-    background-size: auto 105%;
+    background-size: auto 112%;
     background-position: 48% 100%;
   }
 
@@ -357,32 +377,40 @@ html.entered .title-foil {
   }
 
   .hero-card {
-    min-width: min(304px, calc(100vw - 54px));
-    padding: 27px 22px 25px;
-    border-radius: 16px;
-    background: rgba(255, 250, 242, 0.90);
-    box-shadow: 0 22px 64px rgba(0,0,0,0.22);
+    width: 100%;
+    min-width: 0;
+    padding: 16px 15px 15px;
+    border-radius: 14px;
+    background: rgba(255, 250, 242, 0.82);
+    box-shadow: 0 18px 52px rgba(0,0,0,0.20);
+    backdrop-filter: blur(8px);
   }
 
   .hero-card::before {
-    inset: 8px;
+    inset: 7px;
+    border-radius: 10px;
   }
 
   .hero-title {
-    font-size: 31px;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
+    font-size: 23px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
   }
 
   .hero-kicker {
-    font-size: 10px;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+    font-size: 9px;
+    letter-spacing: 1.6px;
+    margin-bottom: 7px;
+  }
+
+  .text-only .dot {
+    margin: 9px auto 9px;
   }
 
   .hero-sub,
   .hero-date {
-    font-size: 15px;
+    font-size: 12px;
+    letter-spacing: 1.2px;
   }
 
   .hero-side {
@@ -405,9 +433,22 @@ html.entered .title-foil {
 }
 
 @media (max-width: 390px) {
+  .hero-center-text {
+    top: 70%;
+    width: min(218px, calc(100vw - 98px));
+  }
+
   .hero-photo.right {
     background-size: auto 120%;
-    background-position: 38% 80%;
+    background-position: 38% 100%;
+  }
+
+  .hero-title {
+    font-size: 21px;
+  }
+
+  .hero-card {
+    padding: 15px 14px 14px;
   }
 }
 
