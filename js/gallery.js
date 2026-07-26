@@ -8,11 +8,14 @@ function initGallery() {
   const track = document.querySelector(".carousel-track");
   const progressBar = document.querySelector(".carousel-progress-bar");
   const progressCount = document.querySelector(".carousel-progress-count");
-  const prefersMobileImages = window.matchMedia("(max-width: 768px)").matches;
   let progressScheduled = false;
 
   function mobileSrcFor(src) {
     return src.replace(/(\.[^.]+)$/, "_mobile.jpg");
+  }
+
+  function previewSrcFor(src) {
+    return mobileSrcFor(src);
   }
 
   function openLightbox(src, fallbackSrc) {
@@ -38,7 +41,7 @@ function initGallery() {
   }
 
   function hydrateSlide(btn, src, index) {
-    const previewSrc = prefersMobileImages ? mobileSrcFor(src) : src;
+    const previewSrc = previewSrcFor(src);
 
     btn.setAttribute("data-src", src);
     btn.setAttribute("data-preview-src", previewSrc);
@@ -207,21 +210,16 @@ function initGallery() {
   }
 
   async function hydrateGeneratedGallery(max) {
-    let misses = 0;
-    const stopAfterMisses = 10;
-
-    for (let i = 1; i <= max && misses < stopAfterMisses; i++) {
+    for (let i = 1; i <= max; i++) {
       const n = String(i).padStart(3, "0");
       const src = `assets/images/gallery_photo_${n}.jpg`;
-      const previewSrc = prefersMobileImages ? mobileSrcFor(src) : src;
+      const previewSrc = previewSrcFor(src);
       const exists = await probeImage(previewSrc) || await probeImage(src);
 
       if (!exists) {
-        misses += 1;
         continue;
       }
 
-      misses = 0;
       const btn = document.createElement("button");
       btn.className = "carousel-slide";
       btn.type = "button";
@@ -232,8 +230,9 @@ function initGallery() {
     }
   }
 
-  // Static hosting cannot list folders, so scan sequential filenames and
-  // stop after several misses instead of requesting every possible image.
+  // Static hosting cannot list folders, so scan sequential filenames.
+  // Keep scanning through gaps because GitHub Pages is case-sensitive and
+  // one missing filename should not hide later photos.
   if (track) {
     const maxAttr = track.getAttribute("data-gallery-max");
     const max = Math.max(0, Math.min(999, Number(maxAttr || 0) || 0));
