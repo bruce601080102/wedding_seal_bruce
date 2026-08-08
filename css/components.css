@@ -68,10 +68,12 @@ main#content-page {
   transition: background 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.site-nav a:hover {
-  background: rgba(176, 141, 87, 0.14);
-  color: var(--ink);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .site-nav a:hover {
+    background: rgba(176, 141, 87, 0.14);
+    color: var(--ink);
+    transform: translateY(-1px);
+  }
 }
 
 .envelope-stage {
@@ -184,7 +186,7 @@ main#content-page {
   border-radius: var(--radius-md);
   min-width: 112px;
   box-shadow: var(--shadow-sm);
-  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 220ms ease, border-color 220ms ease;
 }
 
 .time-box::before {
@@ -197,10 +199,17 @@ main#content-page {
   background: linear-gradient(90deg, transparent, rgba(176, 141, 87, 0.42), transparent);
 }
 
-.time-box:hover {
-  transform: translateY(-2px);
-  border-color: rgba(176, 141, 87, 0.26);
-  box-shadow: 0 20px 52px rgba(0,0,0,0.15);
+@media (hover: hover) and (pointer: fine) {
+  .time-box:hover {
+    transform: translateY(-2px);
+    border-color: rgba(176, 141, 87, 0.26);
+    box-shadow: 0 20px 52px rgba(0,0,0,0.15);
+  }
+}
+
+.time-box:active {
+  transform: scale(0.97);
+  transition: transform 100ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 100ms ease;
 }
 
 .time-box span {
@@ -403,8 +412,8 @@ main#content-page {
   transform-style: preserve-3d;
   backface-visibility: hidden;
   transition:
-    transform 760ms cubic-bezier(.2,.85,.2,1),
-    opacity 420ms ease;
+    transform 620ms cubic-bezier(0.32, 0.72, 0, 1),
+    opacity 340ms cubic-bezier(0.23, 1, 0.32, 1);
   will-change: transform, opacity;
 }
 
@@ -470,7 +479,7 @@ main#content-page {
 .album-page {
   opacity: 0;
   transform: translateY(40px);
-  transition: all 1s ease;
+  transition: transform 800ms cubic-bezier(0.32, 0.72, 0, 1), opacity 480ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .album-page.show {
@@ -577,9 +586,16 @@ main#content-page {
   border: 1px dashed rgba(176, 141, 87, 0.48);
 }
 
-#music-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: var(--shadow-md);
+@media (hover: hover) and (pointer: fine) {
+  #music-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+#music-toggle:active {
+  transform: scale(0.95);
+  transition: transform 100ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 100ms ease;
 }
 
 #music-toggle.is-playing {
@@ -666,7 +682,7 @@ main#content-page {
   letter-spacing: 1px;
   font-weight: 600;
   box-shadow: 0 14px 30px rgba(0,0,0,0.12);
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 160ms ease, background 160ms ease;
 }
 
 .btn::before {
@@ -690,14 +706,21 @@ main#content-page {
   box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.10);
 }
 
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 18px 44px rgba(0,0,0,0.16);
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 44px rgba(0,0,0,0.16);
+  }
+
+  .btn:hover::before {
+    animation: buttonGleam 780ms ease forwards;
+    opacity: 1;
+  }
 }
 
-.btn:hover::before {
-  animation: buttonGleam 780ms ease forwards;
-  opacity: 1;
+.btn:active {
+  transform: scale(0.97);
+  transition: transform 100ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 100ms ease;
 }
 
 .btn-ghost {
@@ -738,7 +761,7 @@ main#content-page {
   border: 1px solid rgba(28, 35, 48, 0.10);
   min-width: 0;
   overflow: hidden;
-  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+  transition: transform 240ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 240ms ease, border-color 240ms ease;
 }
 
 .details-card::before {
@@ -765,15 +788,17 @@ main#content-page {
   pointer-events: none;
 }
 
-.details-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(176, 141, 87, 0.28);
-  box-shadow: 0 22px 54px rgba(0,0,0,0.14);
-}
+@media (hover: hover) and (pointer: fine) {
+  .details-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(176, 141, 87, 0.28);
+    box-shadow: 0 22px 54px rgba(0,0,0,0.14);
+  }
 
-.details-card:hover::before {
-  animation: cardGleam 900ms ease forwards;
-  opacity: 1;
+  .details-card:hover::before {
+    animation: cardGleam 900ms ease forwards;
+    opacity: 1;
+  }
 }
 
 .details-card h3 {
@@ -892,10 +917,12 @@ main#content-page {
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
 }
 
-.gallery-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 26px 70px rgba(0,0,0,0.16);
-  filter: saturate(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 26px 70px rgba(0,0,0,0.16);
+    filter: saturate(1.05);
+  }
 }
 
 .gallery-item:nth-child(1) { grid-column: 1 / span 7; }
@@ -966,7 +993,7 @@ main#content-page {
   background-size: cover;
   background-position: center;
   overflow: hidden;
-  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 180ms ease, filter 180ms ease;
   backface-visibility: hidden;
   contain: paint;
 }
@@ -995,19 +1022,21 @@ main#content-page {
   user-select: none;
 }
 
-.carousel-slide:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 30px 90px rgba(0,0,0,0.18);
-  filter: saturate(1.02);
-}
+@media (hover: hover) and (pointer: fine) {
+  .carousel-slide:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 30px 90px rgba(0,0,0,0.18);
+    filter: saturate(1.02);
+  }
 
-.carousel-slide:hover::after {
-  opacity: 1;
-}
+  .carousel-slide:hover::after {
+    opacity: 1;
+  }
 
-.carousel-slide:hover img {
-  transform: scale(1.035);
-  filter: saturate(1.04) contrast(1.03);
+  .carousel-slide:hover img {
+    transform: scale(1.02);
+    filter: saturate(1.04) contrast(1.03);
+  }
 }
 
 .carousel-nav {
@@ -1026,9 +1055,16 @@ main#content-page {
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
-.carousel-nav:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 22px 52px rgba(0,0,0,0.16);
+@media (hover: hover) and (pointer: fine) {
+  .carousel-nav:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 22px 52px rgba(0,0,0,0.16);
+  }
+}
+
+.carousel-nav:active {
+  transform: scale(0.95);
+  transition: transform 100ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 100ms ease;
 }
 
 .carousel-progress {
@@ -1081,7 +1117,7 @@ main#content-page {
   background:
     linear-gradient(90deg, rgba(106, 32, 64, 0.50), rgba(176, 141, 87, 0.94), rgba(255, 244, 217, 0.95));
   box-shadow: 0 0 18px rgba(176, 141, 87, 0.28);
-  transition: width 220ms ease;
+  transition: width 220ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .carousel-progress-count {

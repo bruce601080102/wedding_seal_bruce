@@ -269,7 +269,7 @@
   background-position: center;
   filter: saturate(0.82) contrast(1.05) brightness(0.98);
   transform: scale(1.06);
-  animation: heroKenBurns 16s ease-in-out infinite alternate;
+  animation: heroKenBurns 18s ease-in-out infinite alternate;
 }
 
 .hero-photo.left {
@@ -298,7 +298,7 @@
 
 /* Entrance wow: assemble card on first load after opening */
 html.entered .hero-card {
-  animation: cardAssemble 900ms cubic-bezier(.2,.8,.2,1) both;
+  animation: cardAssemble 800ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 html.entered .title-foil {
@@ -306,9 +306,21 @@ html.entered .title-foil {
 }
 
 @keyframes cardAssemble {
-  0% { opacity: 0; transform: translateY(18px) scale(0.985); filter: blur(6px); }
-  60% { opacity: 1; transform: translateY(0) scale(1.0); filter: blur(0); }
-  100% { opacity: 1; transform: translateY(0) scale(1.0); filter: blur(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    filter: blur(8px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1.0);
+    filter: blur(0);
+  }
 }
 
 .hero-card {
@@ -386,7 +398,7 @@ html.entered .title-foil {
   text-shadow:
     0 1px 0 rgba(0,0,0,0.18),
     0 10px 26px rgba(176, 141, 87, 0.14);
-  animation: foilSweep 5.4s ease-in-out infinite;
+  animation: foilSweep 5.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
 @keyframes foilSweep {
@@ -491,7 +503,7 @@ html.entered .title-foil {
   box-shadow: 0 18px 54px rgba(0,0,0,0.18);
   backdrop-filter: blur(10px);
   transform: rotate(-2deg);
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 180ms ease, background 180ms ease;
 }
 
 .hero-form-ticket::before,
@@ -514,10 +526,17 @@ html.entered .title-foil {
   right: -7px;
 }
 
-.hero-form-ticket:hover {
-  transform: rotate(0deg) translateY(-3px);
-  box-shadow: 0 24px 70px rgba(0,0,0,0.22);
-  background: rgba(255, 250, 242, 0.90);
+@media (hover: hover) and (pointer: fine) {
+  .hero-form-ticket:hover {
+    transform: rotate(0deg) translateY(-3px);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.22);
+    background: rgba(255, 250, 242, 0.90);
+  }
+}
+
+.hero-form-ticket:active {
+  transform: rotate(-2deg) scale(0.97);
+  transition: transform 100ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 100ms ease;
 }
 
 .hero-form-ticket span:last-child {
