@@ -802,4 +802,8 @@ html.entered .title-foil {
   .scroll-cue i::before {
     animation: none;
   }
+
+  body {
+    transition: none !important;
+  }
 }

@@ -35,8 +35,10 @@ function initGallery() {
     if (!lightbox) return;
     lightbox.hidden = true;
     if (lightboxImg) {
-      lightboxImg.onerror = null;
-      lightboxImg.src = "";
+      setTimeout(() => {
+        lightboxImg.onerror = null;
+        lightboxImg.src = "";
+      }, 400);
     }
   }
 
