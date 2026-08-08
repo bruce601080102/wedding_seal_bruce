@@ -375,9 +375,10 @@ html.entered .title-foil {
 .hero-title {
   font-family: "Cormorant Garamond", "Cinzel", "Noto Serif TC", ui-serif, serif;
   font-size: clamp(34px, 4.5vw, 54px);
-  letter-spacing: 6px;
+  letter-spacing: clamp(-0.02em, -1vw, 6px);
   font-weight: 600;
   margin-bottom: 14px;
+  line-height: 1.08;
 }
 
 .title-foil {
@@ -535,8 +536,12 @@ html.entered .title-foil {
 }
 
 .hero-form-ticket:active {
-  transform: rotate(-2deg) scale(0.97);
-  transition: transform 100ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 100ms ease;
+  transform: rotate(-2deg) scale(0.95);
+  background: rgba(255, 250, 242, 0.86);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.16);
+  transition: transform 100ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 100ms ease-out,
+              box-shadow 100ms ease-out;
 }
 
 .hero-form-ticket span:last-child {
